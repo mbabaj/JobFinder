@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content%}
+    {% if jobs %}
+        {% for job in jobs %}
+        <a href="{{ job.link }}" target="_blank" class="job-link">
+            <div class="job-card" data-title="Frontend Developer" data-location="New York" data-category="tech">
+                <div class="job-header">
+                    <img src="{{job.image_url}}" alt="Job Finder Logo">
+                    <h3>{{job.title}}</h3>
+                </div>
+                <p class="location"><strong>City: {{job.city}}</strong></p>
+                <p class="description">strong>Expires in:</strong> {{ job.expiration }}</p>
+                <form method="post" action="{% url 'jobs:favorite_toggle' job.pk %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="next" value="{{ request.get_full_path }}">
+                    <button 
+                        class="favorite-btn" 
+                        data-job-id="{{ job.id }}"
+                        data-url="{% url 'jobs:favorite_toggle' job.id %}"
+                        >
+                        {% if job in user.favorite_jobs.all %}
+                            ★ Unfavorite
+                        {% else %}
+                            ☆ Favorite
+                    {% endif %}
+                    </button>
+                </form>
+                </a>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endblock %}

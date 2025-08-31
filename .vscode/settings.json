@@ -1,0 +1,7 @@
+{
+    "djlint.showInstallError": false,
+    "files.exclude": {
+        "": true,
+        "**/.git": false
+    }
+}

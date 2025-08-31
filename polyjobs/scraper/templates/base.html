@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Job Finder</title>
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <a href="{% url 'scraper:job_list' %}" class="job-link">
+    <div class="logo">Job<span>Finder</span></div>
+    </a>
+    <nav class="nav">
+      <a href="{% url 'scraper:job_list' %}">Home</a>
+      <a href="{% url 'scraper:my_favorites' %}">Favorites</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+    </nav>
+    <!-- Account Section -->
+  {% if user.is_authenticated %}
+  <div class="account">
+    <div class="dropdown">
+      <img class="avatar" src="https://www.knutsynstad.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FBox3.2388f8ae.png&w=640&q=75" 
+          alt="avatar"
+          width="50" 
+          height="50" >
+      <div class="dropdown-content">
+        <a href="#">{{ user.username }}</a>
+        <a href="{% url 'makeusers:change_password' %}">Change password</a>
+        <a href="{% url 'makeusers:logout' %}">Logout</a>
+      </div>
+    </div>
+  {% else %}
+    <div class="auth-buttons">
+  <button class="auth-btn" onclick="window.location.href='{% url 'makeusers:login' %}'">Log In</button>
+  <button class="auth-btn" onclick="window.location.href='{% url 'makeusers:signup' %}'">Sign Up</button>
+</div>
+  {% endif %}
+</div>
+  </header>
+
+  <!-- Search + Filters -->
+  <section class="search-section">
+    <form name="search" method="get" action="{% url 'scraper:job_list' %}">
+      {% csrf_token %}
+    <input value="{{ request.GET.q }}" name="q" type="text" id="search" placeholder="Search for jobs..." onchange="this.form.submit()">
+    <select name="city" onchange="this.form.submit()">
+        <option value="" selected>All Cities</option>
+        {% for c in cities %}
+            <option value="{{ c }}" {% if request.GET.city == c %}selected{% endif %}>
+                {{ c }}
+            </option>
+        {% endfor %}
+    </select>
+      <button class="favorite-btn" type="submit">Search</button>
+    </form>
+  </section>
+
+  <!-- Job Postings -->
+  <main class="jobs-grid" id="jobs-grid">
+    {% block content %}
+    {% endblock %}
+  </main>
+  <div class="pagination">
+    {% if page_obj.has_previous %}
+        <a href="?page=1">First</a>
+        <a class="prev" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+    {% endif %}
+
+    <span class="active">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+
+    {% if page_obj.has_next %}
+        <a class="next" href="?page={{ page_obj.next_page_number }}">Next</a>
+        <a href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+    {% endif %}
+</div>
+  <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

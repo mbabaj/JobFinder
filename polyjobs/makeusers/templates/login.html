@@ -1,0 +1,25 @@
+{% extends "authbase.html" %}
+{% block content %}
+  <main class="auth-container">
+    <div class="auth-card">
+      <h2>Welcome Back 👋</h2>
+      <p class="auth-subtext">Login to continue</p>
+      
+      <form class="auth-form" method="POST" action="{% url 'makeusers:login' %}">
+        {% csrf_token %}
+        {% if error %}
+          <p style="color: red;">{{ error }}</p>
+        {% endif %}
+        <label for="username">username</label>
+        <input type="text" name="username" id="username" placeholder="Enter your username" required>
+        
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" placeholder="Enter your password" required>
+        
+        <button type="submit" class="auth-btn">Login</button>
+      </form>
+
+      <p class="auth-footer">Don’t have an account? <a href="{% url 'makeusers:signup' %}">Sign up</a></p>
+    </div>
+  </main>
+{% endblock %}

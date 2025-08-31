@@ -1,0 +1,339 @@
+/* General Styles */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: #f9f9fb;
+  color: #333;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: #fff;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #5a2d82;
+}
+
+.logo span {
+  color: #00bfa6;
+}
+
+.nav a {
+  margin: 0 1rem;
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.nav a:hover {
+  color: #5a2d82;
+}
+
+/* Search Section */
+.search-section {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.search-section input,
+.search-section select {
+  padding: 0.7rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-size: 1rem;
+  outline: none;
+  transition: border 0.3s;
+}
+
+.search-section input:focus,
+.search-section select:focus {
+  border-color: #5a2d82;
+}
+
+/* Jobs Grid */
+.jobs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem;
+}
+
+.job-card {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.job-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+.job-card h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #5a2d82;
+}
+
+.company {
+  font-weight: 600;
+  margin: 0.5rem 0;
+}
+
+.location {
+  color: #777;
+  margin: 0.3rem 0;
+}
+
+.description {
+  margin: 0.5rem 0 1rem;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+/* Apply Button */
+.favorite-btn {
+  background: #00bfa6;
+  color: #fff;
+  border: none;
+  padding: 0.7rem 1.2rem;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s;
+}
+
+.favorite-btn:hover {
+  background: #009e8a;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .search-section {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .nav {
+    display: none; /* Could replace with mobile menu later */
+  }
+}
+/* Auth (Login/Signup) Styles */
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem 1rem;
+}
+
+.auth-card {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  animation: fadeIn 0.6s ease;
+}
+
+.auth-card h2 {
+  color: #5a2d82;
+  margin-bottom: 0.5rem;
+}
+
+.auth-subtext {
+  color: #666;
+  margin-bottom: 1.5rem;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  text-align: left;
+}
+
+.auth-form label {
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.auth-form input {
+  padding: 0.8rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-size: 1rem;
+  outline: none;
+  transition: border 0.3s;
+}
+
+.auth-form input:focus {
+  border-color: #5a2d82;
+}
+
+.auth-btn {
+  background: #00bfa6;
+  color: #fff;
+  border: none;
+  padding: 0.9rem 1.2rem;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: background 0.3s;
+}
+
+.auth-btn:hover {
+  background: #009e8a;
+}
+
+.auth-footer {
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.auth-footer a {
+  color: #5a2d82;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.auth-footer a:hover {
+  text-decoration: underline;
+}
+
+/* Smooth fade animation */
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(20px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+/* Logo with image */
+.job-header {
+  display: flex;            /* places image + title in a row */
+  align-items: center;      /* vertically centers them */
+  gap: 0.6rem;              /* space between image and title */
+  margin-bottom: 0.8rem;
+}
+
+.job-header img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  display: block;
+}
+
+.job-header h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #5a2d82;
+}
+.job-link {
+  display: contents;      /* anchor won't change layout */
+  text-decoration: none;  /* remove underline */
+  color: inherit;         /* text color stays same */
+}
+.avatar:hover {
+  transform: scale(1.05);
+}
+
+/* Dropdown */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 50px;
+  background-color: #fff;
+  min-width: 160px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* Show menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Menu links */
+.dropdown-content a {
+  color: #333;
+  padding: 12px 16px;
+  display: block;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.dropdown-content a:hover {
+  background-color: #f4f4f4;
+}
+.auth-buttons {
+  display: flex;
+  gap: 1rem; /* space between buttons */
+  align-items: center;
+}
+.auth-btn {
+background: #00bfa6;
+  color: #fff;
+  border: none;
+  padding: 0.7rem 1.2rem;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s;
+}
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 40px 0;
+  gap: 8px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.pagination a {
+  padding: 10px 18px;
+  border-radius: 10px;
+  text-decoration: none;
+  background-color: #fff8e7; /* creamy shade */
+  color: #5a2d82; /* accent color */
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  transition: all 0.3s ease;
+}
+
+.pagination a:hover {
+  background-color: #ffeccc; /* hover shade */
+  transform: translateY(-2px);
+}
+
+.pagination a.active {
+  background-color: #5a2d82; /* active accent */
+  color: #fff;
+  font-weight: 600;
+}
+
+.pagination a.prev,
+.pagination a.next {
+  font-weight: bold;
+}
