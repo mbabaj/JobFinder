@@ -8,7 +8,7 @@ django.setup()
 
 from scraper.models import Job
 
-def run():
+def run_rd():
     seen = set()
     duplicates = []
 

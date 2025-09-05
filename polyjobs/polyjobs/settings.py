@@ -126,7 +126,22 @@ USE_I18N = True
 
 USE_TZ = True
 
+# Redis as broker
+CELERY_BROKER_URL = "redis://127.0.0.1:6379/0"
+# Where results are stored (optional)
+CELERY_RESULT_BACKEND = "redis://127.0.0.1:6379/0"
 
+# Timezone
+CELERY_TIMEZONE = "UTC"
+
+from celery.schedules import crontab
+
+CELERY_BEAT_SCHEDULE = {
+    "run-scraper-every-24-hours": {
+        "task": "scraper.tasks.run_scraping",
+        "schedule": crontab(hour=0, minute=0),  # Runs once a day at midnight
+    },
+}
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
